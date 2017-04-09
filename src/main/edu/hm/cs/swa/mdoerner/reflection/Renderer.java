@@ -52,6 +52,7 @@ public class Renderer {
 
         // Go through the fields and methods
         result += renderFields(fields);
+        
         result += renderMethods(methods);
 
         return result;
@@ -144,7 +145,7 @@ public class Renderer {
             m.setAccessible(true);
             // Skip fields that aren't annotated with RenderMe and have
             // parameters - we don't know the right param values here
-            if (m.getAnnotation(RenderMe.class) == null && m.getParameterCount() > 0) {
+            if (m.getAnnotation(RenderMe.class) == null || m.getParameterCount() > 0) {
                 continue;
             }
             // Check the with-parameter of the annotation
